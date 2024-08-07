@@ -1,6 +1,10 @@
 import 'server-only';
 import chalk from 'chalk';
-import type { RESTAPIPartialCurrentUserGuild, RESTRateLimit } from 'discord-api-types/v10';
+import type {
+  APIGuildMember,
+  RESTAPIPartialCurrentUserGuild,
+  RESTRateLimit,
+} from 'discord-api-types/v10';
 import { Discord } from './constants';
 import { wait } from './utils';
 
@@ -10,10 +14,25 @@ const { Endpoints } = Discord;
 export async function getUserGuilds(accessToken: string) {
   const res = await fetchWithDiscordRateLimit(`${Endpoints.API}/users/@me/guilds`, {
     headers: { Authorization: `Bearer ${accessToken}` },
+    cache: 'no-store',
   });
 
   if (!res.ok) throw new Error(res.statusText);
   return await res.json<RESTAPIPartialCurrentUserGuild[]>();
+}
+
+/** Discordサーバーに参加しているメンバーを取得 */
+export async function getGuildMember(guildId: string, userId: string) {
+  const res = await fetchWithDiscordRateLimit(
+    `${Endpoints.API}/guilds/${guildId}/members/${userId}`,
+    {
+      headers: { Authorization: `Bot ${process.env.DISCORD_TOKEN}` },
+      cache: 'no-store',
+    },
+  );
+
+  if (!res.ok) throw new Error(res.statusText);
+  return await res.json<APIGuildMember>();
 }
 
 /** `fetch()`を拡張した関数 レート制限によりリクエストが拒否された場合、`retry_after`秒待機した後に再度リクエストを行う。 */

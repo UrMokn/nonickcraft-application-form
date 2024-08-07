@@ -1,4 +1,4 @@
-import { type Model, Schema, model } from 'mongoose';
+import { type Model, Schema, model, models } from 'mongoose';
 import { snowflake } from './util';
 
 export interface ILevelSchema {
@@ -7,10 +7,6 @@ export interface ILevelSchema {
   xp: number;
   boost: number;
   last: Date;
-}
-
-interface ILevelMethods {
-  addXP(boost: number, save?: boolean): { lv: number; xp: number; diff: number; oldLv: number };
 }
 
 export const levelSchema = new Schema<ILevelSchema>(
@@ -28,7 +24,6 @@ export const levelSchema = new Schema<ILevelSchema>(
 levelSchema.index({ id: 1 }, { name: 'id', unique: true });
 levelSchema.index({ lv: -1, xp: -1 }, { name: 'level' });
 
-export default model<ILevelSchema, Model<ILevelSchema, object, ILevelMethods>>(
-  'levels',
-  levelSchema,
-);
+export default models?.levels
+  ? (models.levels as Model<ILevelSchema>)
+  : model('levels', levelSchema);

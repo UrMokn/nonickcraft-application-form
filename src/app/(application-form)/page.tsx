@@ -1,37 +1,38 @@
-import { auth, signIn, signOut } from '@/auth';
-import { Button } from '@nextui-org/button';
+import { Alert, AlertDescription, AlertTitle } from '@/components/alert';
+import {
+  ExistApplicationAlert,
+  JoinedDeniedGuildsAlert,
+  LoginAlert,
+  NotJoinedAlert,
+  NotMeetRequirementsAlert,
+} from './alerts';
+import { Form } from './form';
+import { CheckRequirementsError, checkRequirements } from './util';
 
 export default async function Home() {
-  const session = await auth();
+  const res = await checkRequirements();
 
-  if (!session) {
-    return (
-      <form
-        action={async () => {
-          'use server';
-          await signIn('discord');
-        }}
-      >
-        <Button type='submit' color='primary'>
-          Sign in with Discord
-        </Button>
-      </form>
-    );
+  if (!res?.ok) {
+    switch (res?.error) {
+      case CheckRequirementsError.LoginRequired:
+        return <LoginAlert />;
+      case CheckRequirementsError.ExistApplication:
+        return <ExistApplicationAlert />;
+      case CheckRequirementsError.NotJoined:
+        return <NotJoinedAlert />;
+      case CheckRequirementsError.JoinedDeniedGuilds:
+        return <JoinedDeniedGuildsAlert />;
+      case CheckRequirementsError.NotMeetRequirements:
+        return <NotMeetRequirementsAlert />;
+      default:
+        return (
+          <Alert variant='danger'>
+            <AlertTitle>不明なエラーが発生しました</AlertTitle>
+            <AlertDescription>{res?.error}</AlertDescription>
+          </Alert>
+        );
+    }
   }
 
-  return (
-    <div className='flex flex-col gap-3'>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
-      <form
-        action={async () => {
-          'use server';
-          await signOut();
-        }}
-      >
-        <Button type='submit' color='danger'>
-          Sign out
-        </Button>
-      </form>
-    </div>
-  );
+  return <Form />;
 }
