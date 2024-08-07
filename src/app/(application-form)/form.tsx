@@ -8,6 +8,7 @@ import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { cn } from '@nextui-org/theme';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import type { z } from 'zod';
 import { postApplication } from './action';
 
@@ -19,7 +20,7 @@ export function Form() {
 
   async function onSubmit(value: z.output<typeof applicationSchema>) {
     const res = await postApplication(value);
-    console.log(res);
+    if (!res?.ok) toast.error(`問題が発生しました。\n${res?.error}`);
   }
 
   return (
