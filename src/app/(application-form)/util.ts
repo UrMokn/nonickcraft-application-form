@@ -27,7 +27,7 @@ export type CheckRequirementsRes =
 export async function checkRequirements(): Promise<CheckRequirementsRes> {
   try {
     const session = await auth();
-    if (!session || !session.user.id) throw new Error(CheckRequirementsError.LoginRequired);
+    if (!session) throw new Error(CheckRequirementsError.LoginRequired);
 
     await dbConnect();
 
