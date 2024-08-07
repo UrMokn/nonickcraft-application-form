@@ -20,7 +20,7 @@ export const applicationSchema = z
       });
     }
 
-    if (data.bedrockId?.length && !/^(?!\d)(?:[a-zA-Z0-9 ]){3,18}/.test(data.bedrockId)) {
+    if (data.bedrockId?.length && !/^(?!\d)(?:[a-zA-Z0-9 ]){3,18}$/.test(data.bedrockId)) {
       return ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: '無効なIDです。',
