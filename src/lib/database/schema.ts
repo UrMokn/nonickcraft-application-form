@@ -12,7 +12,7 @@ export const applicationSchema = z
       .nullable(),
   })
   .superRefine((data, ctx) => {
-    if (data.javaId?.length && !/^[a-zA-Z0-9_]{2,16}$/.test(data.javaId)) {
+    if (data.javaId?.length && !/^[a-zA-Z0-9_]{3,16}$/.test(data.javaId)) {
       return ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: '無効なIDです。',
