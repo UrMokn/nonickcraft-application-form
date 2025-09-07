@@ -34,5 +34,3 @@ openssl rand -base64 32
 ```sh
 pnpm dev
 ```
-
-
