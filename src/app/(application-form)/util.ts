@@ -40,13 +40,13 @@ export async function checkRequirements(): Promise<CheckRequirementsRes> {
     if (guilds.some((guild) => BannedGuilds.includes(guild.id)))
       throw new Error(CheckRequirementsError.JoinedDeniedGuilds);
 
-    const level = await levelModel.findOne({ id: session.user.id });
+  /*  const level = await levelModel.findOne({ id: session.user.id });
     const member = await getGuildMember(process.env.GUILD_ID, session.user.id);
 
     if (!member.roles.includes(process.env.TRUSTED_ROLE) && !((level?.lv ?? 0) >= 10))
       throw new Error(CheckRequirementsError.NotMeetRequirements);
 
-    return { ok: true };
+    return { ok: true };*/
   } catch (e) {
     if (e instanceof Error) {
       return { ok: false, error: e.message };
