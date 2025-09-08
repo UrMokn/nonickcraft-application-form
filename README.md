@@ -1,7 +1,10 @@
 # nonickcraft-application-form
 ![preview](/.github/assets/preview.png)
 
-のにクラの参加申請を受け付けるWebアプリケーション  
+**NoNICK様が作成したものを勝手に使いやすくしたものです**
+[本家](https://github.com/team-nonick/nonickcraft-application-form)
+
+UrMoknCraft鯖の参加申請を受け付けるWebアプリケーション  
 [Next.js](https://nextjs.org/)、[Auth.js](https://authjs.dev/)を使用して構築されています。
 
 ## 📑Usage
@@ -16,7 +19,7 @@
 |変数名|説明|
 |---|---|
 |`GUILD_ID`|申請時に参加が必須なサーバーのID|
-|`TRUSTED_ROLE`|trustedロールのID|
+|`TRUSTED_ROLE`|申請受理後つけられるロールのID(TRUSTED_ROLEとなっていますが面倒くさいのでそのままで)|
 |`DATABASE_URL`|MongoDBの接続に使用するURL|
 |`DATABASE_NAME`|MongoDBのコレクション名|
 |`AUTH_SECRET`|セッションに使用するシークレットキー|
