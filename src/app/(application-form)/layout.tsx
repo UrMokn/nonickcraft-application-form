@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <section className='space-y-1'>
           <h1 className='max-sm:text-2xl text-3xl font-black'>のにクラ参加申請フォーム</h1>
           <h2 className='max-sm:text-sm text-default-500'>
-            2024年8月～9月に開催する、のにクラ シーズン2の参加申請を行えます。
+            UrMoknCraftへの参加申請を行えます。
           </h2>
         </section>
         {children}
