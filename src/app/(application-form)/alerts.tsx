@@ -31,7 +31,7 @@ export function NotJoinedAlert() {
   return (
     <Alert variant='warning'>
       <AlertTitle>サーバーに参加していません</AlertTitle>
-      <AlertDescription>申請を行うにはNoNICK SERVERに参加する必要があります。</AlertDescription>
+      <AlertDescription>申請を行うにはUrMoknCraft鯖に参加する必要があります。</AlertDescription>
     </Alert>
   );
 }
@@ -52,7 +52,7 @@ export function ExistApplicationAlert() {
     <Alert variant='success'>
       <AlertTitle>申請が完了しました！</AlertTitle>
       <AlertDescription>
-        申請が審査されるまで、数日お待ちください。（承認後、専用チャンネルにて案内いたします。）
+        申請が審査されるまで、数日お待ちください。（承認された場合にのみ、DMにてサーバーへの接続方法をご案内します）
       </AlertDescription>
     </Alert>
   );
@@ -63,9 +63,8 @@ export function NotMeetRequirementsAlert() {
     <Alert variant='warning'>
       <AlertTitle>申請要件を満たしていません</AlertTitle>
       <AlertDescription>
-        申請を行うには、/rankコマンドで表示されるレベルが<span className='font-bold'>10</span>
-        以上であるか、
-        <span className='px-1 bg-green-900/50 text-green-500 rounded-md'>@Trusted</span>
+        申請を行うには、
+        <span className='px-1 bg-green-900/50 text-green-500 rounded-md'>@Player</span>
         ロールが付与されている必要があります。
       </AlertDescription>
     </Alert>
