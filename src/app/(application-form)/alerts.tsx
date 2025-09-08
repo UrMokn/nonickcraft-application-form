@@ -52,7 +52,7 @@ export function ExistApplicationAlert() {
     <Alert variant='success'>
       <AlertTitle>申請が完了しました！</AlertTitle>
       <AlertDescription>
-        申請が審査されるまで、数日お待ちください。（承認された場合にのみ、DMにてサーバーへの接続方法をご案内します）
+        申請承認された場合にのみ、DMにてサーバーへの接続方法をご案内します
       </AlertDescription>
     </Alert>
   );
