@@ -9,8 +9,8 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: 'のにクラ参加申請フォーム',
-  description: '2024年8月～9月に開催する、のにクラ シーズン2の参加申請を行えます。',
+  title: 'UrMoknCraft参加申請フォーム',
+  description: 'UrMoknCraftへの参加申請を行えます。',
 };
 
 export default function RootLayout({
